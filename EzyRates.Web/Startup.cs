@@ -1,4 +1,5 @@
 ﻿using EzyRates.Web.Concepts.RatesApi;
+using EzyRates.Web.Concepts.RatesApi.Mapper;
 using EzyRates.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,9 @@ namespace EzyRates.Web
             // Infrastructure
             services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
             services.AddTransient<IXmlSerializerWrapper, XmlSerializerWrapper>();
+
+            // Concepts
+            services.AddTransient<ICurrencyMapper, CurrencyMapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
