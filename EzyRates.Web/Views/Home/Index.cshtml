@@ -1,3 +1,56 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<div class="row lastUpdateHeader">
+    <div class="col-sm-offset-6 col-sm-6 lastUpdateHeader__info">
+        Last update:
+        <span data-bind="text: updatedOn"></span>
+        <span data-bind="ifnot: hasCurrencies">not updated yet</span>
+        <button class="btn btn-primary lastUpdateHeader__button" data-bind="click: updateRates">Update</button>
+    </div>
+</div>
+
+<div class="row ratesHeader">
+    <div class="col-xs-3">Currency</div>
+    <div class="col-xs-2">Per</div>
+    <div class="col-xs-2">Buy</div>
+    <div class="col-xs-2">Sell</div>
+    <div class="col-xs-3"></div>
+</div>
+
+<div class="row ratesEmptyMessage" data-bind="css: { 'ratesEmptyMessage--hidden': hasCurrencies }">
+    <span>no data</span>
+</div>
+
+<div class="rates" data-bind="foreach: currencies, visible: hasCurrencies">
+
+    <div class="row rates__item">
+        <div class="col-xs-3" data-bind="with: details">
+            <a href="#"
+               data-toggle="tooltip"
+               data-placement="top"
+               data-bind="attr: { title: name }, text: code"></a>
+        </div>
+
+        <div class="col-xs-2" data-bind="text: rate.multiply">
+        </div>
+        
+        <div class="col-xs-2" data-bind="text: rate.buy">
+        </div>
+
+        <div class="col-xs-2" data-bind="text: rate.sell">
+        </div>
+
+        <div class="col-xs-3">
+            <a href="#"
+               class="glyphicon glyphicon-info-sign"
+               aria-hidden="true"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-placement="left"
+               data-bind="attr: { 'data-content': guide.toUserInfo }">
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+.ratesEmptyMessage {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+  &--hidden {
+    display: none;
+  }
+}

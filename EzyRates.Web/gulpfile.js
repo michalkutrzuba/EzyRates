@@ -16,7 +16,6 @@ var paths = {
 };
 
 paths.js = paths.source + "Scripts/**/*.js";
-paths.jsTests = paths.source + "Scripts.Tests/**/*.js";
 paths.sass = paths.source + "Styles/**/*.scss";
 
 paths.jsDest = paths.webroot + "js/";
@@ -26,7 +25,6 @@ paths.jsDestMaps = paths.jsDest + "maps";
 paths.cssDest = paths.webroot + "css/";
 paths.cssDestFile = paths.cssDest + "site.min.css";
 paths.cssDestMaps = paths.cssDest + "maps";
-
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.jsDest + "*", cb);
@@ -78,8 +76,19 @@ gulp.task("build::debug", ["clean:js", "clean:css", "compile:js::debug", "compil
 
 gulp.task("build::release", ["clean:js", "clean:css", "compile:js::release", "compile:css::release"]);
 
+
+// Tests
+
+paths.jsTests = paths.source + "Scripts.Tests/**/*.js";
+paths.lib = paths.webroot + "lib/";
+paths.libBootstrap = paths.lib + "bootstrap/dist/bootstrap.js";
+paths.libJquery = paths.lib + "jquery/dist/jquery.js";
+paths.libKnockout = paths.lib + "knockout/dist/knockout.debug.js";
+
+var testSrc = [paths.libBootstrap, paths.libJquery, paths.libKnockout, paths.js, paths.jsTests];
+
 gulp.task("test:singleRun::phantom", function () {
-    gulp.src([paths.js, paths.jsTests], {"read": false})
+    gulp.src(testSrc, {"read": false})
         .pipe(
             karma.server({
                 "configFile": "./karma.conf.js",
@@ -90,7 +99,7 @@ gulp.task("test:singleRun::phantom", function () {
 });
 
 gulp.task("test:singleRun::chrome", function () {
-    gulp.src([paths.js, paths.jsTests], {"read": false})
+    gulp.src(testSrc, {"read": false})
         .pipe(
             karma.server({
                 "configFile": "./karma.conf.js",
@@ -101,7 +110,7 @@ gulp.task("test:singleRun::chrome", function () {
 });
 
 gulp.task("test:watch::chrome", function () {
-    gulp.src([paths.js, paths.jsTests], {"read": false})
+    gulp.src(testSrc, {"read": false})
         .pipe(
             karma.server({
                 "configFile": "./karma.conf.js",

@@ -1,0 +1,16 @@
+.lastUpdateHeader {
+  margin: 20px auto;
+  text-align: right;
+
+  &__info {
+    font-size: 14px;
+
+    & span {
+      font-weight: bold;
+    }
+  }
+  
+  &__button {
+    margin-left: 20px;
+  }
+}
