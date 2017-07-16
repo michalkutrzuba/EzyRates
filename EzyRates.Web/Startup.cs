@@ -1,4 +1,5 @@
-﻿using EzyRates.Web.Infrastructure;
+﻿using EzyRates.Web.Concepts.RatesApi;
+using EzyRates.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ namespace EzyRates.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -26,6 +27,9 @@ namespace EzyRates.Web
         {
             // Add framework services.
             services.AddMvc();
+
+            // Configurations
+            services.Configure<RatesApiConfig>(Configuration.GetSection("RatesApi"));
 
             // Infrastructure
             services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();

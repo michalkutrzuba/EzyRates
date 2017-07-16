@@ -11,6 +11,8 @@
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Concepts\RatesApi" />
+    <Folder Include="Concepts\RatesApi\GetRates" />
     <Folder Include="wwwroot\css\maps\wwwroot\css" />
     <Folder Include="wwwroot\images" />
     <Folder Include="wwwroot\js\maps\wwwroot\js" />
