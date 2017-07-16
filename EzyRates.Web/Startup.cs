@@ -33,6 +33,7 @@ namespace EzyRates.Web
 
             // Infrastructure
             services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
+            services.AddTransient<IXmlSerializerWrapper, XmlSerializerWrapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
