@@ -46,7 +46,7 @@ class ForexViewModel {
 
     updateRates() {
         new HttpClient()
-            .getJsonAsync("http://localhost:5000/RatesApi/GetRates")
+            .getJsonAsync(AppSettings.GetRatesUrl())
             .then(response => {new ForexMapper().toViewModel(response, this)})
             .then(response => {
                 $('[data-toggle="tooltip"]').tooltip();
