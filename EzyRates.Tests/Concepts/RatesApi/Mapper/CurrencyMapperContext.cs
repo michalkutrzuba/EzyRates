@@ -25,11 +25,11 @@ namespace EzyRates.Tests.Concepts.RatesApi.Mapper
 
         protected Rate CreateRate(
             string currencyCode = "FakeCode",
-            string buyRate = "0.0",
-            string sellRate = "1.0",
+            string buyRate = "0,0",
+            string sellRate = "1,0",
             string multiply = "2",
             string currencyGuideAmount = "3",
-            string currencyGuideValue = "4.0"
+            string currencyGuideValue = "4,0"
         )
         {
             return new Rate

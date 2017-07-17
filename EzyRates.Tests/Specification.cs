@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace EzyRates.Tests
@@ -26,6 +27,10 @@ namespace EzyRates.Tests
 
         private void Execute()
         {
+            var cultureInfo = new CultureInfo("sv-SE");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             try
             {
                 EstablishContext();
